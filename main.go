@@ -1,8 +1,8 @@
 package main
 
 import (
+	"Checkrr/Data"
 	"Checkrr/Db"
-	"Checkrr/Db/Models"
 	"Checkrr/Helpers"
 	"Checkrr/Router"
 	"fmt"
@@ -13,14 +13,8 @@ func main() {
 	fmt.Println("Heelo World")
 
 	db := Db.InitDb()
-	user := Models.User{
-		Name:     "Arvind",
-		Password: "Heelo",
-		UserId:   "arvind20",
-	}
-
-	tx := db.Create(&user)
-	fmt.Println(tx.Error, "\n", tx.RowsAffected)
+	users := Data.GetAllUser(db)
+	fmt.Println("Got Users: ", len(users))
 
 	r := Router.New()
 	err := r.Run()

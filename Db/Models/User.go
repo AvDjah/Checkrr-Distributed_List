@@ -4,10 +4,12 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	Id         int64       `json:"id"`
-	Name       string      `json:"name"`
-	UserId     string      `json:"userid"`
-	Password   string      `json:"password"`
-	Categories []Category  `json:"categories"`
-	Lists      []EventList `json:"eventLists"`
+	Id            int64          `json:"id"`
+	Name          string         `json:"name"`
+	UserId        string         `json:"userid"`
+	Password      string         `json:"password"`
+	Categories    []Category     `json:"categories"`
+	EventLists    []EventList    `json:"eventLists"`
+	Events        []Event        `json:"Events"`
+	Notifications []Notification `json:"notifications"`
 }

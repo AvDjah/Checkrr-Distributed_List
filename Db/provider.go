@@ -18,6 +18,6 @@ func InitDb() *gorm.DB {
 }
 
 func migrateSchemas(db *gorm.DB) {
-	err := db.AutoMigrate(&Models.Event{}, &Models.User{}, &Models.Category{}, &Models.EventList{}, &Models.Priority{})
+	err := db.AutoMigrate(&Models.Event{}, &Models.User{}, &Models.Category{}, &Models.EventList{}, &Models.Priority{}, &Models.Notification{})
 	Helpers.Log(err, "Migrating Events")
 }
