@@ -1,0 +1,5 @@
+package Services
+
+func RunNotifConsumer() {
+
+}

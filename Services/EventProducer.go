@@ -11,6 +11,8 @@ func RunWorker() {
 	ticker := time.NewTicker(1 * time.Second)
 	defer ticker.Stop()
 
+	// Run The Two Consumers
+
 	for {
 		select {
 		case <-ticker.C:
@@ -29,5 +31,8 @@ func worker() {
 		// Add a check to get the event which we are going to happen
 		triggeredEvents = append(triggeredEvents, event)
 	}
-	// Send Triggered To be added to Notifications
+	// Send Triggered Notifications to be notified to Users in Real Time
+
+	// Send Triggered Notifications to be stored in DB
+
 }

@@ -14,7 +14,7 @@ func main() {
 
 	time.Sleep(time.Minute * 2)
 
-	//db := Db.InitDb()
+	//_ := Db.InitDb()
 	//users := Data.GetAllUser(db)
 	//fmt.Println("Got Users: ", len(users))
 	//
