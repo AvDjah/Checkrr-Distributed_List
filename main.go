@@ -1,9 +1,10 @@
 package main
 
 import (
+	"Checkrr/Helpers"
+	"Checkrr/Router"
 	"Checkrr/Services"
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -12,16 +13,14 @@ func main() {
 
 	go Services.RunWorker()
 
-	time.Sleep(time.Minute * 2)
-
 	//_ := Db.InitDb()
 	//users := Data.GetAllUser(db)
 	//fmt.Println("Got Users: ", len(users))
 	//
-	//r := Router.New()
-	//err := r.Run()
-	//if err != nil {
-	//	Helpers.Log(err, "Error while listening")
-	//}
+	r := Router.New()
+	err := r.Run()
+	if err != nil {
+		Helpers.Log(err, "Error while listening")
+	}
 
 }
