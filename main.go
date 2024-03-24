@@ -5,10 +5,19 @@ import (
 	"Checkrr/Router"
 	"Checkrr/Services"
 	"fmt"
+	"github.com/spf13/viper"
 )
 
 func main() {
 
+	viper.SetConfigName("")
+	viper.SetConfigType("env")
+	viper.AddConfigPath(".")
+	err := viper.ReadInConfig()
+
+	if err != nil {
+		Helpers.Log(err, "Reading Env")
+	}
 	fmt.Println("Heelo World")
 
 	go Services.RunWorker()
@@ -18,7 +27,7 @@ func main() {
 	//fmt.Println("Got Users: ", len(users))
 	//
 	r := Router.New()
-	err := r.Run()
+	err = r.Run()
 	if err != nil {
 		Helpers.Log(err, "Error while listening")
 	}

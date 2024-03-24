@@ -1,9 +1,12 @@
 package Helpers
 
-import "fmt"
+import (
+	"log"
+)
 
 func Log(err error, msg string) {
 	if err != nil {
-		fmt.Println("Error at : ", msg)
+		log.Println(err, " -> Error at : ", msg)
+		//log.Panicln(err, " -> Error at : ", msg)
 	}
 }

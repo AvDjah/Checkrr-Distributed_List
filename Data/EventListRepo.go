@@ -35,7 +35,7 @@ func GetEventListById(db *gorm.DB, id int64) Models.EventList {
 
 func GetEventListsByUserId(db *gorm.DB, userId int64) []Models.EventList {
 	var eventLists []Models.EventList
-	result := db.Where(&Models.EventList{UserID: userId}).Find(&eventLists)
+	result := db.Where(&Models.EventList{UserID: userId}).Preload("Events").Preload("Subscriptions").Find(&eventLists)
 
 	if result.Error != nil {
 		Helpers.Log(result.Error, "Error getting EventListsByUserId")
