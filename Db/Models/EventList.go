@@ -9,6 +9,6 @@ type EventList struct {
 	Description   string          `json:"description"`
 	Events        []Event         `json:"events"`
 	UserID        int64           `json:"userId"`
-	PriorityID    int64           `json:"priorityID"`
+	PriorityID    int64           `json:"priorityId"`
 	Subscriptions []Subscriptions `json:"subscriptions"`
 }

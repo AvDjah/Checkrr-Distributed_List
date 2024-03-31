@@ -13,5 +13,6 @@ func EventListRoutes(r *gin.Engine) {
 	g.Use(middleware.ValidAuth())
 	{
 		g.GET("/GetAllEvents", Handlers.GetAllUserEvents)
+		g.POST("/addEvent", Handlers.AddUserEvent)
 	}
 }

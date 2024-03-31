@@ -46,7 +46,7 @@ func GetEventById(db *gorm.DB, id int64) Models.Event {
 }
 
 func UpsertEvent(db *gorm.DB, event Models.Event) bool {
-	result := db.Save(event)
+	result := db.Save(&event)
 	if result.Error != nil {
 		Helpers.Log(result.Error, "Error Inserting User Event")
 		return false
@@ -80,17 +80,7 @@ func GetUpcomingEvents(db *gorm.DB) ([]Models.Event, error) {
 }
 
 func InsertDummyEvents(db *gorm.DB) error {
-	now := time.Now().Truncate(time.Minute)
-	fiveMinutesFromNow := now.Add(time.Minute)
-	eightMinutesFromNow := now.Add(time.Minute * 3)
-
-	events := []Models.Event{
-		{EventName: "Event 1", StartTime: generateRandomTime(fiveMinutesFromNow, eightMinutesFromNow), WaitTime: time.Now(), Status: "Pending", EventType: 1, Value: 10.50, Description: "Dummy event 1"},
-		{EventName: "Event 2", StartTime: generateRandomTime(fiveMinutesFromNow, eightMinutesFromNow), WaitTime: time.Now(), Status: "Completed", EventType: 2, Value: 25.99, Description: "Dummy event 2"},
-		{EventName: "Event 3", StartTime: generateRandomTime(fiveMinutesFromNow, eightMinutesFromNow), WaitTime: time.Now(), Status: "Failed", EventType: 1, Value: 5.00, Description: "Dummy event 3"},
-		{EventName: "Event 4", StartTime: generateRandomTime(fiveMinutesFromNow, eightMinutesFromNow), WaitTime: time.Now(), Status: "In Progress", EventType: 3, Value: 125.35, Description: "Dummy event 4"},
-		{EventName: "Event 5", StartTime: generateRandomTime(fiveMinutesFromNow, eightMinutesFromNow), WaitTime: time.Now(), Status: "Pending", EventType: 2, Value: 99.99, Description: "Dummy event 5"},
-	}
+	events := []Models.Event{}
 
 	result := db.Create(&events)
 	return result.Error
@@ -113,10 +103,12 @@ func GetEventsForNextMinute(db *gorm.DB) ([]Models.Event, error) {
 	now := time.Now().Truncate(time.Minute)
 	// Add 1 minute to current time to represent the start of the next minute
 	nextMinuteStart := now.Add(time.Minute)
-	fmt.Println("Next Time: ", nextMinuteStart)
+	formattedTime := nextMinuteStart.Format("15:04:05")
+
+	fmt.Println("Next Time: ", formattedTime)
 	var events []Models.Event
 	// Query for events with start time exactly equal to nextMinuteStart
-	result := db.Where("start_time = ?", nextMinuteStart).Find(&events)
+	result := db.Where("start_time = ?", formattedTime).Find(&events)
 
 	return events, result.Error
 }

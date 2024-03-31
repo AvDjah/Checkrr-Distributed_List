@@ -9,7 +9,7 @@ import (
 )
 
 func New() *gin.Engine {
-	r := gin.Default()
+	r := gin.New()
 
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:3000"}
@@ -23,6 +23,7 @@ func New() *gin.Engine {
 	UserGroup(r)
 	DebugRoutes(r)
 	EventListRoutes(r)
+	EventRoutes(r)
 
 	return r
 }

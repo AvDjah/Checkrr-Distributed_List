@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Checkrr/Db"
 	"Checkrr/Helpers"
 	"Checkrr/Router"
 	"Checkrr/Services"
@@ -10,6 +11,7 @@ import (
 
 func main() {
 
+	_ = Db.InitDb()
 	viper.SetConfigName("")
 	viper.SetConfigType("env")
 	viper.AddConfigPath(".")

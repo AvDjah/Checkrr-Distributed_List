@@ -50,7 +50,6 @@ func RegisterUser(c *gin.Context) {
 	result := Data.UpsertUser(db, user)
 
 	if result == true {
-
 		c.JSON(http.StatusCreated, gin.H{"message": "user created successfully"})
 	} else {
 		c.JSON(http.StatusConflict, "Could not create user.")
@@ -114,7 +113,7 @@ func LoginUser(c *gin.Context) {
 		fmt.Println("name:", name)
 	}
 
-	c.SetCookie("Authorization", jwtToken, 6*3600, "/", "localhost", true, true)
+	c.SetCookie("Authorization", jwtToken, 6*3600, "/", "localhost", false, true)
 
 	c.JSON(http.StatusOK, gin.H{"message": "login successful", "token": jwtToken})
 }
