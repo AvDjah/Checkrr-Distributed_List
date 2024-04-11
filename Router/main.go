@@ -24,6 +24,7 @@ func New() *gin.Engine {
 	DebugRoutes(r)
 	EventListRoutes(r)
 	EventRoutes(r)
+	NotificationRoutes(r)
 
 	return r
 }

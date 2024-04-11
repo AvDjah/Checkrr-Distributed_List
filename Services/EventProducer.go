@@ -15,6 +15,7 @@ type Message struct {
 	EventId   int64
 	EventType int
 	Message   string
+	UserId    int64
 }
 
 var DbChannel chan Message
@@ -89,6 +90,7 @@ func worker() {
 			EventType: item.EventType,
 			Message:   item.Description,
 			EventId:   item.ID,
+			UserId:    item.UserID,
 		}
 
 		// Send Triggered Notifications to be stored in DB
@@ -96,11 +98,13 @@ func worker() {
 			EventType: item.EventType,
 			Message:   item.Description,
 			EventId:   item.ID,
+			UserId:    item.UserID,
 		}
 		produceEvent(Message{
 			EventType: item.EventType,
 			Message:   item.Description,
 			EventId:   item.ID,
+			UserId:    item.UserID,
 		})
 	}
 
